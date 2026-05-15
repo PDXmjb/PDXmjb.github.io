@@ -73,6 +73,16 @@
     box-shadow: var(--shadow);
   }
 
+  &.home__card--disabled {
+    background-color: var(--disabled);
+
+    &:hover {
+      border-color: var(--border);
+      box-shadow: none;
+      background-color: var(--disabled);
+    }
+  }
+
   h3 {
     margin: 0 0 8px;
     font-size: 1.1rem;

@@ -9,6 +9,7 @@ const exercises = [
     description: 'Basic state management with increment/decrement',
     tags: ['state', 'events'],
     difficulty: 'novice',
+    disabled: false,
   },
   {
     path: '/toggle-switch',
@@ -16,6 +17,7 @@ const exercises = [
     description: 'CSS transitions and controlled components',
     tags: ['css', 'a11y'],
     difficulty: 'novice',
+    disabled: false,
   },
   {
     path: '/accordion',
@@ -23,6 +25,7 @@ const exercises = [
     description: 'Collapsible sections with animations',
     tags: ['conditional rendering', 'state'],
     difficulty: 'novice',
+    disabled: false,
   },
   {
     path: '/star-rating',
@@ -30,6 +33,7 @@ const exercises = [
     description: 'Interactive rating with hover preview',
     tags: ['events', 'dynamic styling'],
     difficulty: 'novice',
+    disabled: false,
   },
   {
     path: '/tabs',
@@ -37,6 +41,7 @@ const exercises = [
     description: 'Tab navigation with keyboard support',
     tags: ['composition', 'a11y'],
     difficulty: 'novice',
+    disabled: false,
   },
 
   // Intermediate
@@ -46,6 +51,7 @@ const exercises = [
     description: 'CRUD operations with localStorage persistence',
     tags: ['state', 'forms', 'localStorage'],
     difficulty: 'intermediate',
+    disabled: false,
   },
   {
     path: '/modal-dialog',
@@ -53,6 +59,7 @@ const exercises = [
     description: 'Accessible modal with focus trap and portal',
     tags: ['portals', 'a11y', 'focus'],
     difficulty: 'intermediate',
+    disabled: false,
   },
   {
     path: '/infinite-scroll',
@@ -60,6 +67,7 @@ const exercises = [
     description: 'Load more data as user scrolls',
     tags: ['Intersection Observer', 'pagination'],
     difficulty: 'intermediate',
+    disabled: false,
   },
   {
     path: '/autocomplete',
@@ -67,6 +75,7 @@ const exercises = [
     description: 'Typeahead with debounce and keyboard nav',
     tags: ['debounce', 'async', 'keyboard'],
     difficulty: 'intermediate',
+    disabled: false,
   },
   {
     path: '/form-validation',
@@ -74,6 +83,7 @@ const exercises = [
     description: 'Real-time validation with error states',
     tags: ['forms', 'validation'],
     difficulty: 'intermediate',
+    disabled: false,
   },
   {
     path: '/image-carousel',
@@ -81,6 +91,7 @@ const exercises = [
     description: 'Slideshow with navigation and autoplay',
     tags: ['css transforms', 'timers'],
     difficulty: 'intermediate',
+    disabled: false,
   },
   {
     path: '/drag-and-drop-list',
@@ -88,6 +99,7 @@ const exercises = [
     description: 'Reorderable list with visual feedback',
     tags: ['DnD API', 'reordering'],
     difficulty: 'intermediate',
+    disabled: false,
   },
   {
     path: '/product-page',
@@ -95,6 +107,7 @@ const exercises = [
     description: 'E-commerce product display with cart interactions',
     tags: ['state', 'forms', 'e-commerce'],
     difficulty: 'intermediate',
+    disabled: false,
   },
   {
     path: '/js-exercises',
@@ -102,6 +115,7 @@ const exercises = [
     description: 'Various Leetcode exercises',
     tags: ['Leetcode', 'Trees'],
     difficulty: 'intermediate',
+    disabled: false,
   },
 
   // Advanced
@@ -111,6 +125,7 @@ const exercises = [
     description: 'Sortable, filterable table with pagination',
     tags: ['useMemo', 'performance'],
     difficulty: 'advanced',
+    disabled: false,
   },
   {
     path: '/multi-step-form',
@@ -118,6 +133,7 @@ const exercises = [
     description: 'Wizard with step validation and review',
     tags: ['forms', 'state machine'],
     difficulty: 'advanced',
+    disabled: false,
   },
   {
     path: '/kanban-board',
@@ -125,6 +141,7 @@ const exercises = [
     description: 'Drag cards between columns',
     tags: ['DnD', 'complex state'],
     difficulty: 'advanced',
+    disabled: false,
   },
   {
     path: '/realtime-search',
@@ -132,6 +149,7 @@ const exercises = [
     description: 'Cached API search with race condition handling',
     tags: ['caching', 'async'],
     difficulty: 'advanced',
+    disabled: false,
   },
   {
     path: '/undo-redo',
@@ -139,6 +157,7 @@ const exercises = [
     description: 'Command pattern with state history',
     tags: ['patterns', 'history'],
     difficulty: 'advanced',
+    disabled: false,
   },
   {
     path: '/vector',
@@ -146,6 +165,7 @@ const exercises = [
     description: 'Exercise during the 3rd interview with Vector',
     tags: ['interview'],
     difficulty: 'advanced',
+    disabled: false,
   },
 
   // Expert
@@ -155,6 +175,7 @@ const exercises = [
     description: 'Render 10k+ items efficiently',
     tags: ['virtualization', 'performance'],
     difficulty: 'expert',
+    disabled: false,
   },
   {
     path: '/spreadsheet',
@@ -162,6 +183,7 @@ const exercises = [
     description: 'Grid editor with formulas and cell refs',
     tags: ['grid', 'formulas', 'keyboard'],
     difficulty: 'expert',
+    disabled: false,
   },
   {
     path: '/collaborative-editor',
@@ -169,6 +191,7 @@ const exercises = [
     description: 'Real-time sync with conflict resolution',
     tags: ['CRDT', 'WebSocket'],
     difficulty: 'expert',
+    disabled: true,
   },
 ];
 
@@ -202,23 +225,43 @@ function Home() {
 
       {sortedDifficulties.map((difficulty) => (
         <section className="home__section" key={difficulty}>
-          <h2 className={`home__section-title home__section-title--${difficulty}`}>
+          <h2
+            className={`home__section-title home__section-title--${difficulty}`}
+          >
             {difficultyLabels[difficulty]}
           </h2>
           <ul className="home__grid">
             {grouped[difficulty].map((exercise) => (
               <li key={exercise.path}>
-                <Link className="home__card" to={exercise.path}>
-                  <h3>{exercise.title}</h3>
-                  <p>{exercise.description}</p>
-                  <div className="home__tags">
-                    {exercise.tags.map((tag) => (
-                      <span className="home__tag" key={tag}>
-                        {tag}
-                      </span>
-                    ))}
+                {exercise.disabled ? (
+                  <div className="home__card home__card--disabled">
+                    <h3>{exercise.title}</h3>
+                    <p>{exercise.description}</p>
+                    <div className="home__tags">
+                      {exercise.tags.map((tag) => (
+                        <span className="home__tag" key={tag}>
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </Link>
+                ) : (
+                  <Link
+                    className="home__card"
+                    disabled={exercise.disabled}
+                    to={exercise.path}
+                  >
+                    <h3>{exercise.title}</h3>
+                    <p>{exercise.description}</p>
+                    <div className="home__tags">
+                      {exercise.tags.map((tag) => (
+                        <span className="home__tag" key={tag}>
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </Link>
+                )}
               </li>
             ))}
           </ul>
