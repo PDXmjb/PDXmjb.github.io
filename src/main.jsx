@@ -6,6 +6,13 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App.jsx';
 import './index.scss';
 
+// Handle GitHub Pages 404 redirect
+const params = new URLSearchParams(window.location.search);
+const redirect = params.get('redirect');
+if (redirect) {
+  window.history.replaceState(null, '', redirect);
+}
+
 const queryClient = new QueryClient();
 
 createRoot(document.getElementById('root')).render(
