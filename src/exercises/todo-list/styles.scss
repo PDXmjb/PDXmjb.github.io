@@ -1,0 +1,90 @@
+@use "../shared";
+
+.todo__form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    margin-bottom: 1rem;
+
+    label {
+        margin-right: 8px;
+    }
+}
+
+.todo__input {
+    min-width: 300px;
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.todo__submit {
+    background-color: transparent;
+    margin-left: 1rem;
+    padding: 1rem;
+
+    &:hover {
+        background-color: #EEE;
+    }
+}
+
+.todo__filters {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.todo__filter-button {
+    flex: 1;
+    background-color: transparent;
+
+    &:hover {
+        background-color: rgba(128, 128, 128, 0.127);
+    }
+
+    &--active {
+        text-decoration: underline;
+        font-weight: bold;
+    }
+}
+
+.todo__list {
+    p {
+        width: 300px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+}
+
+.todo__item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid gray;
+
+    button {
+        background-color: transparent;
+        border: 0;
+        padding: 8px;
+        margin: 8px;
+
+        &:hover {
+            background-color: rgba(128, 128, 128, 0.127);
+        }
+    }
+}
+
+.todo__item-text {
+    margin-left: 2rem;
+}
+
+.todo__item-actions {
+    display: flex;
+}
+
+.todo__complete-button {
+    background-color: transparent;
+}
